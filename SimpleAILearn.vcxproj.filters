@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{76ec9edf-6278-4898-b9a7-d5698c99ed65}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\Adapter.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Data.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Layer.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\LayerManager.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\mkbmp.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Node.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\TestData.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\TrainData.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
