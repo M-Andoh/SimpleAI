@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <limits.h>
 #include <sstream>
 #include "LayerManager.h"
 #include "Node.h"
@@ -92,7 +94,10 @@ void LayerManager::SaveWeight(const char* filename) {
 void LayerManager::SaveWeight(std::string& filename) {
 	std::ofstream  sw;
 	try {
-		std::cerr << realpath(filename.c_str(), NULL) << std::endl;
+		char buffer[PATH_MAX];
+		char* fname = realpath(filename.c_str(), buffer);
+
+		std::cerr << fname << std::endl;
 		sw.open(filename);
 		if (!sw) {
 			std::cerr << "file open error : " << filename.c_str() << std::endl;
@@ -130,7 +135,10 @@ void LayerManager::LoadWeight(const char* filename) {
 void LayerManager::LoadWeight(std::string& filename) {
 	std::ifstream sr;
 	try {
-		std::cerr << realpath(filename.c_str(), NULL) << std::endl;
+		char buffer[PATH_MAX];
+		char* fname = realpath(filename.c_str(), buffer);
+
+		std::cerr << fname << std::endl;
 		sr.open(filename);
 		if (!sr) {
 			std::cerr << "file open error : " << filename << std::endl;
