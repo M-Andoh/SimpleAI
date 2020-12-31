@@ -158,6 +158,9 @@
     <ClCompile Include="source\TestData.cpp" />
     <ClCompile Include="source\TrainData.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="source\Makefile" />
+  </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

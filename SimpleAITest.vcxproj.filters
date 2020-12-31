@@ -34,4 +34,7 @@
   <ItemGroup>
     <ClCompile Include="SimpleAITest.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile.Test" />
+  </ItemGroup>
 </Project>

@@ -31,4 +31,11 @@
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SimpleAILearn.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="Makefile.Learn" />
+  </ItemGroup>
 </Project>

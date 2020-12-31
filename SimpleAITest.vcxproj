@@ -156,6 +156,9 @@
       <Project>{6825098c-2e4a-4f72-af74-fd84df1f1339}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile.Test" />
+  </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
       <LibraryDependencies>SimpleAI;curl;z</LibraryDependencies>

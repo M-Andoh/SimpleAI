@@ -148,6 +148,10 @@
     <ClInclude Include="header\TestData.h" />
     <ClInclude Include="header\TrainData.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="Makefile.Learn" />
+  </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\mitsuru\source\repos\SimpleAI\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
