@@ -1,3 +1,6 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 #include <string>
 #include <iostream>
 #include <fstream>

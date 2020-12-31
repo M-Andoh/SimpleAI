@@ -1,3 +1,6 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -7,8 +10,10 @@
 
 
 TrainData::TrainData() {
-	TrainDataNum = 50000;
-	TestDataNum = 10000;
+	// TrainDataNum = 50000;
+	// TestDataNum = 10000;
+	TrainDataNum = 200;
+	TestDataNum = 100;
 	std::string imageUrl = "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz";
 	std::string imageTempName = "train-images-idx3-ubyte.gz";
 	std::string imageFileName = "train-images-idx3-ubyte";

@@ -26,6 +26,7 @@ int main(int argc,char* argv[])
     layerManager.InitWeight();
  
     // 学習データ分、学習を行う
+    std::cout << "Train Data Num : " << data.TrainDataNum << std::endl;
     for (int epoch = 0; epoch < 1; ++epoch) {
         std::cout << "Epoch : " << epoch << std::endl;
         for (int i = 0; i < data.TrainDataNum; i++) {
