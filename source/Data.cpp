@@ -5,12 +5,22 @@
 #include "mkbmp.h"
 
 
-Data::Data() {
+Data::Data() :
+	Images(nullptr), Answers(nullptr), AnsNumber(nullptr)
+{
 	// std::cout << "TrainData,constructor" << std::endl;
-}
+	}
 
 Data::~Data() {
 	// std::cout << "TrainData,destructor" << std::endl;
+	int num = Data::TrainDataNum + Data::TestDataNum;
+	for (int i = 0; i < num; ++i) {
+		delete[] Images[i];
+		delete[] Answers[i];
+	}
+	delete[] Images;
+	delete[] Answers;
+	delete[] AnsNumber;
 }
 
 void Data::Load() {

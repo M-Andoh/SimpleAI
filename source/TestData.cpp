@@ -18,7 +18,10 @@ TestData::TestData() {
 	std::string labelFileName = "t10k-labels-idx1-ubyte";
 
 	{
-		std::cerr << realpath(imageFileName.c_str(), NULL) << std::endl;
+		char buffer[PATH_MAX];
+		char* filename = realpath(imageFileName.c_str(), buffer);
+
+		std::cerr << filename << std::endl;
 		std::ifstream ifs(imageFileName);
 		if (!ifs.is_open()) {
 			if (!GetFile(imageTempName, imageUrl)) {
@@ -32,7 +35,10 @@ TestData::TestData() {
 	}
 
 	{
-		std::cerr << realpath(labelFileName.c_str(), NULL) << std::endl;
+		char buffer[PATH_MAX];
+		char* filename = realpath(labelFileName.c_str(), buffer);
+
+		std::cerr << filename << std::endl;
 		std::ifstream ifs(labelFileName);
 		if (!ifs.is_open()) {
 			if (!GetFile(labelTempName, labelUrl)) {
