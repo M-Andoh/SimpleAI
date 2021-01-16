@@ -151,6 +151,9 @@
       <Project>{6825098c-2e4a-4f72-af74-fd84df1f1339}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile.Loto6" />
+  </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\mitsuru\source\repos\SimpleAI\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
