@@ -98,11 +98,14 @@ int main(int argc, char* argv[])
                 << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%" << std::endl;
 
             ofs << epoch << ",";
+            // std::cerr << epoch << ",";
             double* softmax = layerManager.SoftMax();
             for (int j = 0; j < (Loto7::dataNum / 2); ++j) {
                 ofs << std::fixed << std::setprecision(3) << softmax[j] << ",";
+                // std::cerr << std::fixed << std::setprecision(3) << softmax[j] << ",";
             }
             ofs << std::endl;
+            // std::cerr << std::endl;
         }
     }
 

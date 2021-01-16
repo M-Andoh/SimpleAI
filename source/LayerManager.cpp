@@ -62,16 +62,16 @@ double* LayerManager::SoftMax() {
 	OutputList = new double[layer->nodeList.size()];
 
 	double maxVal = layer->nodeList[max]->outVal;
-	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+	for (size_t i = 0; i < layer->nodeList.size(); ++i) {
 		OutputList[i] = exp((layer->nodeList[i]->outVal) - maxVal);
 	}
 	
 	double totalVal = 0.0;
-	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+	for (size_t i = 0; i < layer->nodeList.size(); ++i) {
 		totalVal += OutputList[i];
 	}
 	
-	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+	for (size_t i = 0; i < layer->nodeList.size(); ++i) {
 		OutputList[i] /= totalVal;
 	}
 
