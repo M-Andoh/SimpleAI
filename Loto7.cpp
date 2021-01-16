@@ -1,10 +1,10 @@
-#include "Loto6.h"
+#include "Loto7.h"
 #include <cstdio>
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
 #include "LayerManager.h"
-#include "Loto6Data.h"
+#include "Loto7Data.h"
 #include "TestData.h"
 //#include "Adapter.h"
 
@@ -14,7 +14,7 @@ LayerManager layerManager;
 int main(int argc, char* argv[])
 {
     // 学習データの読み込み 
-    Loto6Data data;
+    Loto7Data data;
     data.Load();
 
     layerManager.AddLayer(Loto7::dataKaigou * Loto7::dataNum); // 入力層 

@@ -1,18 +1,18 @@
 #pragma once
 #include <Data.h>
 
-struct Loto7;
+class Loto7;
 
-class Loto6Data :
+class Loto7Data :
     public Data
 {
-    std::string Loto6Url;
+    std::string Loto7Url;
 
 public:
     Loto7* Data;
 
-    Loto6Data();
-    virtual ~Loto6Data();
+    Loto7Data();
+    virtual ~Loto7Data();
     void Load() override;
 };
 
