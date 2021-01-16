@@ -2,7 +2,7 @@ LIB = libSimpleAI.a
 PROGRAM1 = SimplAILearn
 PROGRAM2 = SimplAITest
 PROGRAM3 = SimplAILoto6
-PROGRAM3 = SimplAILoto7
+PROGRAM4 = SimplAILoto7
 .PHONY: all
 all: $(LIB) $(PROGRAM1) $(PROGRAM2) $(PROGRAM3) $(PROGRAM4)
 
