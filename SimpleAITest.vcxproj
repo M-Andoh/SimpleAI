@@ -87,56 +87,56 @@
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)$(ProjectName)\obj\</IntDir>
     <IncludePath>C:\Users\mitsuru\source\repos\SimpleAI\header</IncludePath>
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
-    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)</RemoteProjectDir>
+    <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="SimpleAITest.cpp" />

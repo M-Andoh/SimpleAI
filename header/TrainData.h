@@ -9,5 +9,6 @@ class TrainData : public Data
 public:
 	TrainData();
 	virtual ~TrainData();
+	void Load() override;
 };
 

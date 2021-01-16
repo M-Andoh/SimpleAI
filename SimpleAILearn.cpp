@@ -38,9 +38,9 @@ int main(int argc,char* argv[])
             if ((i % 100) == 0) {
                 double score = Test(100, data);
                 std::cout
-                    << "Epoch : " << epoch
-                    << "   Count : " << i
-                    << "   " << (score * 100) << "%"
+                    << "Epoch : " << std::setw(3) << epoch
+                    << "   Count : " << std::setw(6) << i
+                    << "   Ratio : " << std::setw(7) << std::fixed << std::setprecision(3) << (score * 100) << "%"
                     << std::endl;
             }
             if ((i % 10000) == 0) {
@@ -53,7 +53,7 @@ int main(int argc,char* argv[])
     // 最終的な精度をチェック 
     double last_score = Test(100, data);
     last_score *= 100;
-    std::cout << last_score<< "%"<< std::endl;
+    std::cout << std::fixed << std::setprecision(3)  << last_score << "%"<< std::endl;
     // 学習結果を保存する
     layerManager.SaveWeight("weight.csv");
     return 0;

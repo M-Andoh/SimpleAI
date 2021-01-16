@@ -143,7 +143,13 @@
     <ClInclude Include="header\Node.h" />
     <ClInclude Include="header\TestData.h" />
     <ClInclude Include="header\TrainData.h" />
+    <ClInclude Include="Loto6.h" />
     <ClInclude Include="Loto6Data.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libSimpleAI.vcxproj">
+      <Project>{6825098c-2e4a-4f72-af74-fd84df1f1339}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>

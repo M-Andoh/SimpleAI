@@ -26,16 +26,22 @@ int main(int argc,char* argv[])
         if (layerManager.GetMaxIndex() == (size_t)data.AnsNumber[i]) {
             correctCnt++;
         }
-        if (i % 100 == 0) {
-            std::cerr 
-                << "Count : " << i 
-                << "   Correct : " << correctCnt 
-                << "   Ratio : " << (100.0 * correctCnt / i) << "%"
+        if ((i > 0) && (i % 100 == 0)) {
+            std::cerr
+                << "Count : " << std::setw(5) << i
+                << "   Correct : " << std::setw(5) << correctCnt
+                << "   Ratio : " << std::setw(7) << std::fixed << std::setprecision(3) << (100.0 * correctCnt / i) << "%"
                 << std::endl;
         }
     }
 
-    std::cout << (100.0 * correctCnt / data.TestDataNum) << "%" << std::endl;
+    std::cout 
+        << std::setw(7) 
+        << std::fixed 
+        << std::setprecision(3) 
+        << (100.0 * correctCnt / data.TestDataNum) 
+        << "%" 
+        << std::endl;
     return 0;
 }
 

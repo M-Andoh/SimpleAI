@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 #include <curl/curl.h>
 #include <zlib.h>
 
@@ -18,9 +19,10 @@ public:
 
 	Data();
 	virtual ~Data();
-	void Load();
+	virtual void Load();
 
-	bool GetFile(std::string& file, std::string& url);
+	bool GetFile(std::ostream& ofs, std::string& url);
+	bool GetFileByPost(std::ostream& ofs, std::string& url, std::string contentType, std::string postData);
 	bool Decompress(std::string& file, std::string& tmpfile);
 
 };

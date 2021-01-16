@@ -12,5 +12,6 @@ class TestData : public Data
 public:
 	TestData();
 	virtual ~TestData();
+	void Load() override;
 };
 

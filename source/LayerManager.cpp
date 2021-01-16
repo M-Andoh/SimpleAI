@@ -7,7 +7,7 @@
 
 
 LayerManager::LayerManager() :
-	LayerCount(0)
+	LayerCount(0), OutputList(nullptr)
 {
 	// std::cout << "LayerManager,constructor" << std::endl;
 }
@@ -18,8 +18,8 @@ LayerManager::~LayerManager() {
 	}
 	layerList.clear();
 	// std::cout << "LayerManager,destructor" << std::endl;
+	delete[] OutputList;
 }
-
 
 // ƒŒƒCƒ„[‚Ì’Ç‰Á
 void LayerManager::AddLayer(int nodeNum) {
@@ -52,6 +52,30 @@ size_t LayerManager::GetMaxIndex() {
 		}
 	}
 	return maxIndex;
+}
+
+double* LayerManager::SoftMax() {
+	int max = (int)GetMaxIndex();
+
+	Layer* layer = layerList[layerList.size() - 1];
+	delete[] OutputList;
+	OutputList = new double[layer->nodeList.size()];
+
+	double maxVal = layer->nodeList[max]->outVal;
+	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+		OutputList[i] = exp((layer->nodeList[i]->outVal) - maxVal);
+	}
+	
+	double totalVal = 0.0;
+	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+		totalVal += OutputList[i];
+	}
+	
+	for (size_t i = 1; i < layer->nodeList.size(); ++i) {
+		OutputList[i] /= totalVal;
+	}
+
+	return OutputList;
 }
 
 // d‚İ‚Ì‰Šú‰»

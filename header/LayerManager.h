@@ -9,6 +9,7 @@ class LayerManager
 public:
 	int LayerCount;
 	std::vector<Layer*> layerList;
+	double* OutputList;
 
 	LayerManager();
 	virtual ~LayerManager();
@@ -21,6 +22,9 @@ public:
 
 	// 最大値のIndex(認識 結果）を返す
 	size_t GetMaxIndex();
+
+	// Softmax値を返す
+	double* SoftMax();
 
 	// 重みの初期化
 	void InitWeight();

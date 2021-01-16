@@ -1,75 +1,112 @@
-ï»¿#include <cstdio>
+#include "Loto6.h"
+#include <cstdio>
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
 #include "LayerManager.h"
-#include "TrainData.h"
+#include "Loto6Data.h"
 #include "TestData.h"
 //#include "Adapter.h"
 
-static  double COEF = 0.1;// å­¦ç¿’ç‡ 
+static  double COEF = 0.1;// ŠwK—¦ 
 LayerManager layerManager;
-double Test(int testNum, TrainData& data);
 
 int main(int argc, char* argv[])
 {
-    // å­¦ç¿’ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ 
-    TrainData data;
+    // ŠwKƒf[ƒ^‚Ì“Ç‚İ‚İ 
+    Loto6Data data;
     data.Load();
 
-    layerManager.AddLayer(28 * 28); // å…¥åŠ›å±¤ 
-    layerManager.AddLayer(400);     // éš ã‚Œå±¤ 
-    layerManager.AddLayer(100);     // éš ã‚Œå±¤ 
-    layerManager.AddLayer(10);      // å‡ºåŠ›å±¤
+    layerManager.AddLayer(Loto6::dataKaigou * Loto6::dataNum); // “ü—Í‘w 
+    layerManager.AddLayer(400);     // ‰B‚ê‘w 
+    layerManager.AddLayer(100);     // ‰B‚ê‘w 
+    layerManager.AddLayer(Loto6::dataNum / 2);      // o—Í‘w
 
-    // é‡ã¿åˆæœŸåŒ– 
+    // d‚İ‰Šú‰» 
     layerManager.InitWeight();
 
-    // å­¦ç¿’ãƒ‡ãƒ¼ã‚¿åˆ†ã€å­¦ç¿’ã‚’è¡Œã†
+    // ŠwKƒf[ƒ^•ªAŠwK‚ğs‚¤
     std::cout << "Train Data Num : " << data.TrainDataNum << std::endl;
-    for (int epoch = 0; epoch < 1; ++epoch) {
-        std::cout << "Epoch : " << epoch << std::endl;
-        for (int i = 0; i < data.TrainDataNum; i++) {
-            layerManager.CalcOutput(data.Images[i]);
-            layerManager.CalcError(data.Answers[i]);
+    std::ofstream ofs("result.csv");
+    ofs << "epoch,";
+    for (int i = 0; i < (Loto6::dataNum / 2); ++i) {
+        ofs << (i + 1) << ",";
+    }
+    ofs << std::endl;
+
+
+    for (int epoch = 0; epoch < 100; ++epoch) {
+        std::cout << "Epoch : " << std::setw(4) << epoch << std::endl;
+        double totalRatio = 0.0;
+        long totalCount = 0;
+        for (int i = Loto6::dataKaigou; i < data.TrainDataNum; ++i) {
+            double InputData[(Loto6::dataKaigou * Loto6::dataNum)];
+            double AnswerData[(Loto6::dataNum)];
+
+            for (int j = 0; j < Loto6::dataKaigou; ++j) {
+                int kaigou = i - Loto6::dataKaigou + j;
+                for (int k = 0; k < Loto6::dataNum; ++k) {
+                    InputData[(j * Loto6::dataNum) + k] =
+                        static_cast<double>(data.Data[kaigou].tousen[k]);
+                }
+            }
+
+            {
+                int j = Loto6::dataKaigou;
+                int kaigou = i - Loto6::dataKaigou + j;
+                for (int k = 0; k < Loto6::dataNum; ++k) {
+                    AnswerData[k] =
+                        static_cast<double>(data.Data[kaigou].tousen[k]);
+                }
+            }
+
+            layerManager.CalcOutput(InputData);
+            layerManager.CalcError(AnswerData);
+            double* softmax = layerManager.SoftMax();
+            for (int j = 0; j < (Loto6::dataNum / 2); ++j) {
+                // std::cerr << "softmax : " << softmax[j] << "  AnswerData : "<<  AnswerData[j];
+                totalRatio += softmax[j] * AnswerData[j];
+                // std::cerr << "  totalRatio : " << totalRatio << std::endl;
+            }
+            std::cout 
+                << "\rcount : " << std::setw(4) << i 
+                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)(++totalCount)) << "%" << std::flush;
+
             layerManager.UpdateWeight(COEF);
 
-            // 100å›æ¯ã«ç²¾åº¦ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚°ãƒ©ãƒ•è¡¨ç¤º
-            if ((i % 100) == 0) {
-                double score = Test(100, data);
-                std::cout
-                    << "Epoch : " << epoch
-                    << "   Count : " << i
-                    << "   " << (score * 100) << "%"
-                    << std::endl;
+            //if ((i % 10000) == 0) {
+            //    // ŠwKŒ‹‰Ê‚ğ•Û‘¶‚·‚é
+            //    layerManager.SaveWeight("weight.csv");
+            //}
+        }
+
+        {
+            int i = data.TrainDataNum;
+            double InputData[(Loto6::dataKaigou * Loto6::dataNum)];
+
+            for (int j = 0; j < Loto6::dataKaigou; ++j) {
+                int kaigou = i - Loto6::dataKaigou + j;
+                for (int k = 0; k < Loto6::dataNum; ++k) {
+                    InputData[(j * Loto6::dataNum) + k] =
+                        static_cast<double>(data.Data[kaigou].tousen[k]);
+                }
             }
-            if ((i % 10000) == 0) {
-                // å­¦ç¿’çµæœã‚’ä¿å­˜ã™ã‚‹
-                layerManager.SaveWeight("weight.csv");
+
+            layerManager.CalcOutput(InputData);
+            std::cout 
+                << "\rcount : " << std::setw(4) << i 
+                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%" << std::endl;
+
+            ofs << epoch;
+            double* softmax = layerManager.SoftMax();
+            for (int j = 0; j < (Loto6::dataNum / 2); ++j) {
+                ofs << std::fixed << std::setprecision(3) << softmax[j] << ",";
             }
+            ofs << std::endl;
         }
     }
 
-    // æœ€çµ‚çš„ãªç²¾åº¦ã‚’ãƒã‚§ãƒƒã‚¯ 
-    double last_score = Test(100, data);
-    last_score *= 100;
-    std::cout << last_score << "%" << std::endl;
-    // å­¦ç¿’çµæœã‚’ä¿å­˜ã™ã‚‹
     layerManager.SaveWeight("weight.csv");
     return 0;
 }
-
-// ç²¾åº¦ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
-double Test(int testNum, TrainData& data) {
-    int correctCnt = 0; // æ­£è§£æ•° 
-    for (int i = 0; i < testNum; i++) {
-        layerManager.CalcOutput(data.Images[data.TrainDataNum + i]);
-        //std::cerr << "Max : " << layerManager.GetMaxIndex() << "   Label : " << (size_t)data.AnsNumber[data.TrainDataNum + i] << std::endl;
-        if (layerManager.GetMaxIndex() == (size_t)data.AnsNumber[data.TrainDataNum + i]) {
-            correctCnt++;
-        }
-    }
-    return ((double)correctCnt / (double)testNum);
-}
-
 

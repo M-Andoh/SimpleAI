@@ -9,18 +9,117 @@ Data::Data() :
 	Images(nullptr), Answers(nullptr), AnsNumber(nullptr)
 {
 	// std::cout << "TrainData,constructor" << std::endl;
-	}
+}
 
 Data::~Data() {
 	// std::cout << "TrainData,destructor" << std::endl;
 	int num = Data::TrainDataNum + Data::TestDataNum;
-	for (int i = 0; i < num; ++i) {
-		delete[] Images[i];
-		delete[] Answers[i];
+	if (Images != nullptr) {
+		for (int i = 0; i < num; ++i) {
+			delete[] Images[i];
+		}
+	}
+	if (Answers != nullptr) {
+		for (int i = 0; i < num; ++i) {
+			delete[] Answers[i];
+		}
 	}
 	delete[] Images;
 	delete[] Answers;
 	delete[] AnsNumber;
+}
+
+
+size_t callBackFunk(char* ptr, size_t size, size_t nmemb, std::ofstream* ofs)
+{
+	int realsize = (int)size * (int)nmemb;
+	ofs->write(ptr, realsize);
+	return realsize;
+}
+
+bool Data::GetFile(std::ostream& ofs, std::string& url) {
+	CURL* curl;
+	CURLcode res;
+	curl = curl_easy_init();
+
+	if (!curl)
+	{
+		std::cout << "curl initialize error" << std::endl;
+		return false;
+	}
+
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callBackFunk);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::ofstream*)&ofs);
+	curl_easy_setopt(curl, CURLOPT_PROXY, "");
+	res = curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+
+	if (res != CURLE_OK) {
+		std::cout << "curl error" << std::endl;
+		exit(1);
+	}
+
+	return true;
+}
+
+bool Data::GetFileByPost(std::ostream& ofs, std::string& url, std::string _contentType, std::string postData) {
+	CURL* curl;
+	CURLcode res;
+	curl = curl_easy_init();
+
+	if (!curl)
+	{
+		std::cout << "curl initialize error" << std::endl;
+		return false;
+	}
+
+	struct curl_slist* chunk = NULL;
+	std::string contentType = "Content-Type: " + _contentType;
+	chunk = curl_slist_append(chunk, contentType.c_str());
+	curl_easy_setopt(curl, CURLOPT_POST, 1L);
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData.c_str());
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)postData.length());
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callBackFunk);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::ofstream*)&ofs);
+	curl_easy_setopt(curl, CURLOPT_PROXY, "");
+
+	res = curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+
+	if (res != CURLE_OK) {
+		std::cout << "curl error" << std::endl;
+		exit(1);
+	}
+
+	return true;
+}
+
+bool Data::Decompress(std::string& filename, std::string& gzfile) {
+	gzFile gzf = gzopen(gzfile.c_str(), "rb");
+	std::ofstream ofs(filename, std::ios::binary);
+	int readbytes;
+	char buffer[4096];
+
+	if (gzf == NULL) {
+		std::cerr << "file open error : " << gzfile << std::endl;
+		return false;
+	}
+
+	if (!ofs.is_open()) {
+		std::cerr << "file open error : " << filename << std::endl;
+		return false;
+	}
+
+	while ((readbytes = gzread(gzf, buffer, 4096)) > 0) {
+		ofs.write(buffer, readbytes);
+	}
+
+	gzclose(gzf);
+	ofs.close();
+	return true;
 }
 
 void Data::Load() {
@@ -86,70 +185,4 @@ void Data::Load() {
 		mkbmp(cnt, (int)AnsNumber[cnt], Images[cnt]);
 	}
 #endif // DEBUG
-}
-
-size_t callBackFunk(char* ptr, size_t size, size_t nmemb, std::ofstream* ofs)
-{
-	int realsize = (int)size * (int)nmemb;
-	ofs->write(ptr, realsize);
-	return realsize;
-}
-
-bool Data::GetFile(std::string& filename, std::string& url) {
-	CURL* curl;
-	CURLcode res;
-	curl = curl_easy_init();
-
-	if (!curl)
-	{
-		std::cout << "curl initialize error" << std::endl;
-		return false;
-	}
-
-	std::ofstream ofs(filename);
-	if (!ofs) {
-		std::cout << "fileopen error" << std::endl;
-		return false;
-	}
-
-	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callBackFunk);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::ofstream*) &ofs);
-	curl_easy_setopt(curl, CURLOPT_PROXY, "");
-	res = curl_easy_perform(curl);
-	curl_easy_cleanup(curl);
-
-	ofs.close();
-
-	if (res != CURLE_OK) {
-		std::cout << "curl error" << std::endl;
-		exit(1);
-	}
-
-	return true;
-}
-
-bool Data::Decompress(std::string& filename, std::string& gzfile) {
-	gzFile gzf = gzopen(gzfile.c_str(), "rb");
-	std::ofstream ofs(filename, std::ios::binary);
-	int readbytes;
-	char buffer[4096];
-
-	if (gzf == NULL) {
-		std::cerr << "file open error : " << gzfile << std::endl;
-		return false;
-	}
-
-	if (!ofs.is_open()) {
-		std::cerr << "file open error : " << filename << std::endl;
-		return false;
-	}
-
-	while ((readbytes = gzread(gzf, buffer, 4096)) > 0) {
-		ofs.write(buffer, readbytes);
-	}
-
-	gzclose(gzf);
-	ofs.close();
-	return true;
 }
