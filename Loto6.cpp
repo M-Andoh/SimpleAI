@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 
     // 学習データ分、学習を行う
     std::cout << "Train Data Num : " << data.TrainDataNum << std::endl;
-    std::ofstream ofs("result.csv");
+    std::ofstream ofs("result6.csv");
     ofs << "epoch,";
     for (int i = 0; i < (Loto7::dataNum / 2); ++i) {
         ofs << (i + 1) << ",";
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
                 << "\rcount : " << std::setw(4) << i 
                 << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%" << std::endl;
 
-            ofs << epoch;
+            ofs << epoch << ",";
             double* softmax = layerManager.SoftMax();
             for (int j = 0; j < (Loto7::dataNum / 2); ++j) {
                 ofs << std::fixed << std::setprecision(3) << softmax[j] << ",";
