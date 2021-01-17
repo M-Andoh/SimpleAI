@@ -13,6 +13,20 @@ LayerManager layerManager;
 
 int main(int argc, char* argv[])
 {
+    int epoch = 100;
+    for(int i = 0;i < argc; ++i){
+        if(strcmp(argv[i],"-e") == 0){
+            ++i;
+            if(i < argc){
+                epoch = atoi(argv[i]);
+                continue;
+            } else {
+                fprintf(stderr, "Argment error !!\n");
+                return -1;
+            }
+        }
+    }
+
     // 学習データの読み込み 
     Loto7Data data;
     data.Load();
@@ -27,6 +41,7 @@ int main(int argc, char* argv[])
 
     // 学習データ分、学習を行う
     std::cout << "Train Data Num : " << data.TrainDataNum << std::endl;
+    std::cout << "Epoch Num : " << epoch << std::endl;
     std::ofstream ofs("result7.csv");
     ofs << "epoch,";
     for (int i = 0; i < (Loto7::dataNum / 2); ++i) {
@@ -35,8 +50,8 @@ int main(int argc, char* argv[])
     ofs << std::endl;
 
 
-    for (int epoch = 0; epoch < 100; ++epoch) {
-        std::cout << "Epoch : " << std::setw(4) << epoch << std::endl;
+    for (int e = 0; e < epoch; ++e) {
+        std::cout << "Epoch : " << std::setw(4) << e << std::endl;
         double totalRatio = 0.0;
         long totalCount = 0;
         for (int i = Loto7::dataKaigou; i < data.TrainDataNum; ++i) {
@@ -97,8 +112,8 @@ int main(int argc, char* argv[])
                 << "\rcount : " << std::setw(4) << i 
                 << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%" << std::endl;
 
-            ofs << epoch << ",";
-            // std::cerr << epoch << ",";
+            ofs << e << ",";
+            // std::cerr << e << ",";
             double* softmax = layerManager.SoftMax();
             for (int j = 0; j < (Loto7::dataNum / 2); ++j) {
                 ofs << std::fixed << std::setprecision(3) << softmax[j] << ",";
