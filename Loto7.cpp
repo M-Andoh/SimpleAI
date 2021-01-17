@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
             }
             std::cout 
                 << "\rcount : " << std::setw(4) << i 
-                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)(++totalCount)) << "%" << std::flush;
+                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)(++totalCount)) << "%   " << std::flush;
 
             layerManager.UpdateWeight(COEF);
 
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
             layerManager.CalcOutput(InputData);
             std::cout 
                 << "\rcount : " << std::setw(4) << i 
-                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%" << std::endl;
+                << "   ratio : " << std::fixed << std::setprecision(3) << (100.0 * totalRatio / (double)totalCount) << "%   " << std::endl;
 
             ofs << e << ",";
             // std::cerr << e << ",";
