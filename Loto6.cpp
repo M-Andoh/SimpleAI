@@ -14,14 +14,15 @@ LayerManager layerManager;
 int main(int argc, char* argv[])
 {
     int epoch = 100;
-    for(int i = 0;i < argc; ++i){
-        if(strcmp(argv[i],"-e") == 0){
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "-e") == 0) {
             ++i;
-            if(i < argc){
+            if (i < argc) {
                 epoch = atoi(argv[i]);
                 continue;
-            } else {
-                fprintf(stderr, "Argment error !!\n");
+            }
+            else {
+                std::cerr << "Argment error !!" << std::endl;
                 return -1;
             }
         }
