@@ -35,8 +35,8 @@ int main(int argc, char* argv[])
     Loto6Data data;
     data.Load();
 
-    layerManager.AddLayer(Loto7::dataKaigou * Loto7::dataNum, &relu); // “ü—Í‘w 
-    layerManager.AddLayer(400, &relu);     // ‰B‚ê‘w 
+    layerManager.AddLayer(Loto7::dataKaigou * Loto7::dataNum, &sigmoid); // “ü—Í‘w 
+    layerManager.AddLayer(400, &sigmoid);     // ‰B‚ê‘w 
     layerManager.AddLayer(100, &sigmoid);     // ‰B‚ê‘w 
     layerManager.AddLayer(Loto7::dataNum / 2, &sigmoid);      // o—Í‘w
 
