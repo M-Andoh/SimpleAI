@@ -139,12 +139,15 @@
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemGroup>
+    <ClInclude Include="header\Activation.h" />
     <ClInclude Include="header\Adapter.h" />
     <ClInclude Include="header\Data.h" />
     <ClInclude Include="header\Layer.h" />
     <ClInclude Include="header\LayerManager.h" />
     <ClInclude Include="header\mkbmp.h" />
     <ClInclude Include="header\Node.h" />
+    <ClInclude Include="header\ReLU.h" />
+    <ClInclude Include="header\Sigmoid.h" />
     <ClInclude Include="header\TestData.h" />
     <ClInclude Include="header\TrainData.h" />
   </ItemGroup>
@@ -155,11 +158,15 @@
     <ClCompile Include="source\LayerManager.cpp" />
     <ClCompile Include="source\mkbmp.cpp" />
     <ClCompile Include="source\Node.cpp" />
+    <ClCompile Include="source\ReLU.cpp" />
+    <ClCompile Include="source\Sigmoid.cpp" />
     <ClCompile Include="source\TestData.cpp" />
     <ClCompile Include="source\TrainData.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="source\Makefile" />
+    <None Include="source\Makefile">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

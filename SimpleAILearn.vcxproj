@@ -131,7 +131,7 @@
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="SimpleAILearn.cpp" />
+    <ClCompile Include="AILearn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="libSimpleAI.vcxproj">

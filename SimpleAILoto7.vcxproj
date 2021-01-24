@@ -131,12 +131,15 @@
     <LibraryPath>C:\Users\mitsuru\source\repos\SimpleAI\lib</LibraryPath>
   </PropertyGroup>
   <ItemGroup>
+    <ClInclude Include="header\Activation.h" />
     <ClInclude Include="header\Adapter.h" />
     <ClInclude Include="header\Data.h" />
     <ClInclude Include="header\Layer.h" />
     <ClInclude Include="header\LayerManager.h" />
     <ClInclude Include="header\mkbmp.h" />
     <ClInclude Include="header\Node.h" />
+    <ClInclude Include="header\ReLU.h" />
+    <ClInclude Include="header\Sigmoid.h" />
     <ClInclude Include="header\TestData.h" />
     <ClInclude Include="header\TrainData.h" />
     <ClInclude Include="Loto7.h" />

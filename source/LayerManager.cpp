@@ -4,7 +4,8 @@
 #include "LayerManager.h"
 #include "Node.h"
 #include "Adapter.h"
-
+#include "Sigmoid.h"
+#include "ReLU.h"
 
 LayerManager::LayerManager() :
 	LayerCount(0), OutputList(nullptr)
@@ -22,11 +23,11 @@ LayerManager::~LayerManager() {
 }
 
 // レイヤーの追加
-void LayerManager::AddLayer(int nodeNum) {
+void LayerManager::AddLayer(int nodeNum, Activation* activation) {
 	++LayerCount;
-	Layer* layer = new Layer(nodeNum, (int)layerList.size() + 1);
+	Layer* layer = new Layer(nodeNum, activation, (int)layerList.size() + 1);
 	if (layerList.size() >= 1) {
-		layerList[layerList.size() - 1]->ConnectLayer(layer);
+		layerList[layerList.size() - 1]->ConnectLayer(layer, activation);
 	}
 	layerList.push_back(layer);
 }
@@ -132,6 +133,7 @@ void LayerManager::SaveWeight(std::string& filename) {
 		for (int i = 0; i < LayerCount; i++)
 		{
 			// ノードの数 
+			sw << layerList[i]->activation << std::endl;
 			sw << layerList[i]->nodeCount << std::endl;
 			// ノードが持つAdapterの重みをカンマ区切りで書き込み 
 			for (size_t ii = 0; ii < layerList[i]->nodeList.size(); ii++)
@@ -175,10 +177,20 @@ void LayerManager::LoadWeight(std::string& filename) {
 		}
 		layerList.clear();
 
+		std::string activationName;
+		sr >> activationName;
+		Activation* activation;
+		if (activationName == "Sigmoid") {
+			activation = &sigmoid;
+		}
+		else if (activationName == "ReLU") {
+			activation = &relu;
+		}
+
 		for (size_t i = 0; i < layerNum; ++i) {
 			int nodeNum;
 			sr >> nodeNum;
-			AddLayer(nodeNum);
+			AddLayer(nodeNum, activation);
 
 			std::vector<Node*>& nodeList = layerList[layerList.size() - 1]->nodeList;
 			for (size_t ii = 0; ii < nodeList.size(); ++ii) {

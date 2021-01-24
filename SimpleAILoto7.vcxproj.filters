@@ -25,12 +25,17 @@
     <ClInclude Include="header\TrainData.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Loto7.h">
+    <ClInclude Include="header\Activation.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Loto7Data.h">
+    <ClInclude Include="header\ReLU.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="header\Sigmoid.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Loto7.h" />
+    <ClInclude Include="Loto7Data.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="header">
@@ -41,10 +46,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Loto7Data.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="Loto7.cpp" />
+    <ClCompile Include="Loto7Data.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile.Loto7" />

@@ -135,12 +135,15 @@
     <ClCompile Include="Loto6Data.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Activation.h" />
     <ClInclude Include="header\Adapter.h" />
     <ClInclude Include="header\Data.h" />
     <ClInclude Include="header\Layer.h" />
     <ClInclude Include="header\LayerManager.h" />
     <ClInclude Include="header\mkbmp.h" />
     <ClInclude Include="header\Node.h" />
+    <ClInclude Include="header\ReLU.h" />
+    <ClInclude Include="header\Sigmoid.h" />
     <ClInclude Include="header\TestData.h" />
     <ClInclude Include="header\TrainData.h" />
     <ClInclude Include="Loto6.h" />
@@ -152,6 +155,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Makefile" />
     <None Include="Makefile.Loto6" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">

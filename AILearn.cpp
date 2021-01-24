@@ -5,6 +5,8 @@
 #include "LayerManager.h"
 #include "TrainData.h"
 #include "TestData.h"
+#include "Sigmoid.h"
+#include "ReLU.h"
 //#include "Adapter.h"
 
 static  double COEF = 0.1;// 学習率 
@@ -17,10 +19,10 @@ int main(int argc,char* argv[])
     TrainData data;
     data.Load();
 
-    layerManager.AddLayer(28 * 28); // 入力層 
-    layerManager.AddLayer(400);     // 隠れ層 
-    layerManager.AddLayer(100);     // 隠れ層 
-    layerManager.AddLayer(10);      // 出力層
+    layerManager.AddLayer(28 * 28,&sigmoid); // 入力層 
+    layerManager.AddLayer(400, &sigmoid);     // 隠れ層 
+    layerManager.AddLayer(100, &sigmoid);     // 隠れ層 
+    layerManager.AddLayer(10, &sigmoid);      // 出力層
 
     // 重み初期化 
     layerManager.InitWeight();

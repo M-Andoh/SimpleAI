@@ -139,7 +139,7 @@
     <RemoteProjectDir>$(RemoteRootDir)/$(SolutionName)/</RemoteProjectDir>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="SimpleAITest.cpp" />
+    <ClCompile Include="AITest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Adapter.h" />

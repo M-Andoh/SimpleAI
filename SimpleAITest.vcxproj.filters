@@ -32,9 +32,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SimpleAITest.cpp" />
+    <None Include="Makefile.Test" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Makefile.Test" />
+    <ClCompile Include="AITest.cpp" />
   </ItemGroup>
 </Project>

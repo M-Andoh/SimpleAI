@@ -6,6 +6,8 @@ SRCS += LayerManager.cpp
 SRCS += Node.cpp
 SRCS += TestData.cpp
 SRCS += TrainData.cpp
+SRCS += Sigmoid.cpp
+SRCS += ReLU.cpp
 SRCS += mkbmp.cpp
 OBJS = ${SRCS:.cpp=.o}
 DATE := $(shell date +"%Y/%m/%d %H:%M:%S")

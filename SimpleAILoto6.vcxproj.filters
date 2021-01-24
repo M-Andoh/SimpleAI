@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Loto6Data.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="Loto6.cpp" />
+    <ClCompile Include="Loto6Data.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="header">
@@ -39,14 +37,20 @@
     <ClInclude Include="header\TrainData.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Loto6Data.h">
+    <ClInclude Include="header\Activation.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Loto6.h">
+    <ClInclude Include="header\ReLU.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="header\Sigmoid.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Loto6.h" />
+    <ClInclude Include="Loto6Data.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile.Loto6" />
+    <None Include="Makefile" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include<iostream>
 #include "Layer.h"
 
+class Activation;
+
 class LayerManager
 {
 public:
@@ -15,7 +17,7 @@ public:
 	virtual ~LayerManager();
 
 	// レイヤーの追加
-	void AddLayer(int nodeNum);
+	void AddLayer(int nodeNum,Activation* activation);
 
 	// 入力層にデータを設定し、出力層までの出力値を計算する
 	void CalcOutput(double* input);

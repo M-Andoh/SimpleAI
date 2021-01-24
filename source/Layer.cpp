@@ -1,11 +1,12 @@
 #include <iostream>
 #include "Layer.h"
+#include "Activation.h"
 
-Layer::Layer(int _count, int _layerNo) :
-	layerNo(_layerNo), nodeCount(_count)
+Layer::Layer(int _count, Activation* _activation, int _layerNo) :
+	layerNo(_layerNo), nodeCount(_count), activation(_activation->name)
 {
 	for (int i = 0; i < _count; ++i) {
-		nodeList.push_back(new Node(layerNo, i + 1));
+		nodeList.push_back(new Node(_activation, layerNo, i + 1));
 	}
 	// std::cout << "Layer,constructor," << layerNo << std::endl;
 }
@@ -33,9 +34,9 @@ void Layer::InitWeight() {
 }
 
 // ƒŒƒCƒ„[ŠÔ‚ÅNode‚ð‘SŒ‹‡‚·‚é
-void Layer::ConnectLayer(Layer* next) {
+void Layer::ConnectLayer(Layer* next, Activation* activation) {
 	// Node* biasNode = new Node(layerNo, nodeCount + 1);
-	Node* biasNode = new Node(layerNo, -1);
+	Node* biasNode = new Node(activation, layerNo, -1);
 	biasNode->inVal = 1.0;
 	biasNode->outVal = 1.0;
 	biasNode->bias = true;

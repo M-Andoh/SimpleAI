@@ -6,6 +6,9 @@
 #include "LayerManager.h"
 #include "Loto6Data.h"
 #include "TestData.h"
+#include "Sigmoid.h"
+#include "ReLU.h"
+
 //#include "Adapter.h"
 
 static  double COEF = 0.1;// ŠwK—¦ 
@@ -32,10 +35,10 @@ int main(int argc, char* argv[])
     Loto6Data data;
     data.Load();
 
-    layerManager.AddLayer(Loto7::dataKaigou * Loto7::dataNum); // “ü—Í‘w 
-    layerManager.AddLayer(400);     // ‰B‚ê‘w 
-    layerManager.AddLayer(100);     // ‰B‚ê‘w 
-    layerManager.AddLayer(Loto7::dataNum / 2);      // o—Í‘w
+    layerManager.AddLayer(Loto7::dataKaigou * Loto7::dataNum, &relu); // “ü—Í‘w 
+    layerManager.AddLayer(400, &relu);     // ‰B‚ê‘w 
+    layerManager.AddLayer(100, &sigmoid);     // ‰B‚ê‘w 
+    layerManager.AddLayer(Loto7::dataNum / 2, &sigmoid);      // o—Í‘w
 
     // d‚İ‰Šú‰» 
     layerManager.InitWeight();

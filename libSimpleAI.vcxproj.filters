@@ -33,6 +33,15 @@
     <ClInclude Include="header\TrainData.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="header\Activation.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ReLU.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Sigmoid.h">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Adapter.cpp">
@@ -57,6 +66,12 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\TrainData.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ReLU.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Sigmoid.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

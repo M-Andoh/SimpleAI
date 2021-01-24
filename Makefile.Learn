@@ -1,5 +1,5 @@
-PROGRAM = SimpleAILearn
-SRCS += SimpleAILearn.cpp  
+PROGRAM = AILearn
+SRCS += AILearn.cpp  
 OBJS = ${SRCS:.cpp=.o}
 DATE := $(shell date +"%Y/%m/%d %H:%M:%S")
 

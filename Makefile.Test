@@ -1,5 +1,5 @@
-PROGRAM = SimpleAITest
-SRCS += SimpleAITest.cpp  
+PROGRAM = AITest
+SRCS += AITest.cpp  
 OBJS = ${SRCS:.cpp=.o}
 DATE := $(shell date +"%Y/%m/%d %H:%M:%S")
 

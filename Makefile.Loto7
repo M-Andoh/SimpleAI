@@ -1,4 +1,4 @@
-PROGRAM = SimpleAILoto7
+PROGRAM = AILoto7
 SRCS += Loto7.cpp  
 SRCS += Loto7Data.cpp  
 OBJS = ${SRCS:.cpp=.o}

@@ -4,9 +4,11 @@
 #include <vector>
 
 class Adapter;
+class Activation;
 
 class Node
 {
+	Activation* activation;
 public:
 	int layerNo;
 	int nodeNo;
@@ -19,11 +21,11 @@ public:
 	bool bias = false;
 	double error; // Œë· 
 
-	Node(int layerNo, int nodeNo);
+	Node(Activation* activation, int layerNo, int nodeNo);
 	virtual ~Node();
 
 	// Šˆ«‰»ŠÖ”
-	double Activation(double d);
+	//double Activation(double d);
 	
 	// o—Í’l‚ğZo 
 	void CalcOutput();

@@ -3,10 +3,9 @@
 #include <math.h>
 #include "Node.h"
 #include "Adapter.h"
-#include "Activation.h"
 
-Node::Node(Activation* _activation, int _layerNo = -1, int _nodeNo = -1) :
-	activation(_activation), layerNo(_layerNo), nodeNo(_nodeNo)
+Node::Node(int _layerNo = -1, int _nodeNo = -1) :
+	layerNo(_layerNo), nodeNo(_nodeNo)
 {
 	// std::cout << "Node,constructor," << layerNo << "," << nodeNo << std::endl;
 }
@@ -37,12 +36,12 @@ double Node::GetRandom(int num) {
 }
 
 // 活性化関数
-double ActivationX(double d) {
+double Node::Activation(double d) {
 	return (1.0 / (1.0 + exp(-d)));
 }
 
 // 活性化関数を微分
-double DeActivationX(double d) {
+double DeActivation(double d) {
 	return ((1.0 - d) * d);
 }
 
@@ -57,8 +56,7 @@ void Node::CalcOutput() {
 	for (size_t i = 0; i < inList.size(); ++i) {
 		inVal += inList[i]->GetOutput();
 	}
-	//outVal = ActivationX(inVal);
-	outVal = activation->forword(inVal);
+	outVal = Activation(inVal);
 }
 // 重みの初期化関数
 void Node::InitWeight(int num) {
@@ -91,9 +89,7 @@ void Node::CalcError() {
 // 重み更新関数
 void Node::UpdateWeight(double coef) {
 	for (size_t i = 0; i < inList.size(); ++i) {
-		// inList[i]->weight += (coef * error * DeActivationX(outVal) * inList[i]->input->outVal);
-		double v = activation->backword(outVal);
-		inList[i]->weight += (coef * error * (activation->backword(outVal)) * (inList[i]->input->outVal));
+		inList[i]->weight += (coef * error * DeActivation(outVal) * inList[i]->input->outVal);
 	}
 }
 
