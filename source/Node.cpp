@@ -92,7 +92,6 @@ void Node::CalcError() {
 void Node::UpdateWeight(double coef) {
 	for (size_t i = 0; i < inList.size(); ++i) {
 		// inList[i]->weight += (coef * error * DeActivationX(outVal) * inList[i]->input->outVal);
-		double v = activation->backword(outVal);
 		inList[i]->weight += (coef * error * (activation->backword(outVal)) * (inList[i]->input->outVal));
 	}
 }
